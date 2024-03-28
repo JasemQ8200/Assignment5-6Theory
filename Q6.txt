@@ -1,0 +1,32 @@
+6.	Suggest an extension to the Euclidean Algorithm that increases the functionality
+of your program. Design the pseudocode of
+this extension to the Euclidean Algorithm.
+
+Function extended_euclidean_algorithm(a, b):
+    """
+    Applying the Extended Euclidean Algorithm to determine the greatest common divisor (GCD) of two integers
+    and find coefficients x and y such that ax + by = gcd(a, b).
+
+    Args:
+        a (int): First integer.
+        b (int): Second integer.
+
+    Returns:
+        tuple: A tuple containing the GCD of the two input integers and coefficients x and y.
+    """
+
+    # Initialize initial coefficients
+    x_prev, x = 1, 0
+    y_prev, y = 0, 1
+
+    # Initialize initial remainders
+    r_prev, r = a, b
+
+    while r:
+        quotient = r_prev // r
+        r_prev, r = r, r_prev - quotient * r
+        x_prev, x = x, x_prev - quotient * x
+        y_prev, y = y, y_prev - quotient * y
+
+    # Return GCD and coefficients x, y
+    return r_prev, x_prev, y_prev
